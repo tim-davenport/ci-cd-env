@@ -7,10 +7,6 @@ env:
 on:
 
   push:
-    branches: [ main ]
-
-  pull_request:
-    branches: [ main ]
     
   workflow_dispatch:
 
@@ -33,7 +29,6 @@ jobs:
 
   DeployDev:
     name: Deploy to Dev 
-    if: github.event_name == 'pull_request'
     needs: [Build]
     runs-on: ubuntu-latest
     environment: 
