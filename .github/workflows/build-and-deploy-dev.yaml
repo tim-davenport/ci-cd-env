@@ -21,7 +21,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ format('artifact-{0}.{1}.{2}', env.MAJOR, env.MINOR, github.GITHUB_RUN_NUMBER) }}
+          name: ${{ format('artifact-{0}.{1}.{2}', env.MAJOR, env.MINOR, github.run_number) }}
           path: |
             output
 
@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: ${{ format('artifact-{0}.{1}.{2}', env.MAJOR, env.MINOR, github.GITHUB_RUN_NUMBER) }}
+          name: ${{ format('artifact-{0}.{1}.{2}', env.MAJOR, env.MINOR, github.run_number) }}
           path: deploy/artifact
       - name: Deploy
         run: |
