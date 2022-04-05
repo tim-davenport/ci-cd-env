@@ -24,3 +24,19 @@ jobs:
           name: build-artifact
           path: |
             output
+
+  DeployDev:
+    name: Deploy to Dev 
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    environment: 
+      name: development
+      url: 'http://dev.myapp.com'
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: build-artifact
+          path: deploy/artifact
+      - name: Deploy
+        run: |
+          cat deploy/artifact/$MAJOR.$MINOR.$GITHUB_RUN_NUMBER.txt
