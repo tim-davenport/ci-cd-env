@@ -5,6 +5,10 @@ env:
   MINOR: 1
 
 on:
+
+  push:
+    branches: [ main ]
+
   pull_request:
     branches: [ main ]
     
@@ -45,7 +49,8 @@ jobs:
           cat deploy/artifact/$MAJOR.$MINOR.$GITHUB_RUN_NUMBER.txt
 
   DeployStaging:
-    name: Deploy to Staging 
+    name: Deploy to Staging
+    if: github.event.ref == 'refs/heads/main'
     needs: [DeployDev]
     runs-on: ubuntu-latest
     environment: 
