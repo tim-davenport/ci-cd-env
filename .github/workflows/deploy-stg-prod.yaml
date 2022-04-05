@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to Staging and Prod
 
 on:
 
@@ -24,7 +24,8 @@ jobs:
           path: deploy/artifact
       - name: Deploy
         run: |
-          cat deploy/artifact/$MAJOR.$MINOR.$GITHUB_RUN_NUMBER.txt
+          deployment_file=(*)
+          cat "$deployment_file"
 
   DeployProd:
     name: Deploy to Production 
@@ -41,4 +42,5 @@ jobs:
           path: deploy/artifact
       - name: Deploy
         run: |
-          cat deploy/artifact/$MAJOR.$MINOR.$GITHUB_RUN_NUMBER.txt
+          deployment_file=(*)
+          cat "$deployment_file"
