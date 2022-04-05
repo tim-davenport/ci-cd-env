@@ -16,9 +16,11 @@ jobs:
       name: development
       url: 'http://dev.myapp.com'
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: aochmann/actions-download-artifact@1.0.0
         with:
           name: build-artifact
+          latest: true
+          # Optional, directory where to extract artifact
           path: deploy/artifact
       - name: Deploy
         run: |
@@ -33,9 +35,11 @@ jobs:
       name: staging
       url: 'http://test.myapp.com'
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: aochmann/actions-download-artifact@1.0.0
         with:
           name: build-artifact
+          latest: true
+          # Optional, directory where to extract artifact
           path: deploy/artifact
       - name: Deploy
         run: |
@@ -49,9 +53,11 @@ jobs:
       name: production
       url: 'http://www.myapp.com'
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: aochmann/actions-download-artifact@1.0.0
         with:
           name: build-artifact
+          latest: true
+          # Optional, directory where to extract artifact
           path: deploy/artifact
       - name: Deploy
         run: |
