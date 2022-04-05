@@ -17,7 +17,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build components
         run: |
-          echo "Build artifacts for $MAJOR.$MINOR.$GITHUB_RUN_NUMBER" >> /output/$MAJOR.$MINOR.$GITHUB_RUN_NUMBER.txt
+          mkdir output && cd $_
+          echo "Build artifacts for $MAJOR.$MINOR.$GITHUB_RUN_NUMBER" >> $MAJOR.$MINOR.$GITHUB_RUN_NUMBER.txt
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
