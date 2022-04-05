@@ -1,0 +1,26 @@
+name: Build
+
+env:
+  MAJOR: 1
+  MINOR: 1
+
+on:
+
+  pull_request:
+    branches: [ main ]
+    
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build components
+        run: |
+          mkdir output && cd $_
+          echo "Build artifacts for $MAJOR.$MINOR.$GITHUB_RUN_NUMBER" >> $MAJOR.$MINOR.$GITHUB_RUN_NUMBER.txt
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: |
+            output
