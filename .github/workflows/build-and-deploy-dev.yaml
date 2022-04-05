@@ -21,7 +21,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: build-artifact
+          name: artifact-$MAJOR.$MINOR.$GITHUB_RUN_NUMBER
           path: |
             output
 
@@ -36,8 +36,9 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: build-artifact
+          name: artifact-$MAJOR.$MINOR.$GITHUB_RUN_NUMBER
           path: deploy/artifact
       - name: Deploy
         run: |
           cat deploy/artifact/$MAJOR.$MINOR.$GITHUB_RUN_NUMBER.txt
+          echo "::notice version $MAJOR.$MINOR.$GITHUB_RUN_NUMBER deployed to dev."

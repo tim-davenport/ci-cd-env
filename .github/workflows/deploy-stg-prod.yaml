@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: blablacar/action-download-last-artifact@master
         with:
-          name: build-artifact
+          name: artifact-${{ github.event.review.comment }}
           # Optional, directory where to extract artifact
           path: deploy/artifact
       - name: Deploy
@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: blablacar/action-download-last-artifact@master
         with:
-          name: build-artifact
+          name: artifact-${{ github.event.review.comment }}
           # Optional, directory where to extract artifact
           path: deploy/artifact
       - name: Deploy
