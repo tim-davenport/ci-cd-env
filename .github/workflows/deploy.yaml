@@ -3,7 +3,6 @@ name: Deploy
 on:
 
   push:
-    branches: [ main ]
     
   workflow_dispatch:
 
@@ -11,7 +10,7 @@ jobs:
   
   DeployDev:
     name: Deploy to Dev 
-    if: github.event_name == 'pull_request'
+    if: github.event.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: 
       name: development
